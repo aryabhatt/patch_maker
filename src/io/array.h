@@ -99,7 +99,7 @@ namespace tomocam {
                 ptr_.get() + (i * dims_.n1 * dims_.n2)};
         }
         auto slice(uint32_t i) const {
-            return Slice{dims_.n1, dims_.n2,
+            return Slice<T>{dims_.n1, dims_.n2,
                 ptr_.get() + (i * dims_.n1 * dims_.n2)};
         }
 
