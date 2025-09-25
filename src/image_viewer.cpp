@@ -10,13 +10,10 @@
 
 #include "image_viewer.h"
 #include "io/tiff/tiffio.h"
+#include "main_window.h"
 
-ImageViewer::ImageViewer(const tomocam::Array<float> &images, QWidget *parent) :
-    QGraphicsView(parent),
-    imageStack(images),
-    currentIndex(0),
-    counter(0),
-    save_roi_flag(false) {
+ImageViewer::ImageViewer(const tomocam::Array<float> &images, QWidget *parent)
+    : QGraphicsView(parent), imageStack(images), currentIndex(0), counter(0), save_roi_flag(false) {
     scene = new QGraphicsScene(this);
     setScene(scene);
     setDragMode(QGraphicsView::ScrollHandDrag);
@@ -53,6 +50,23 @@ QImage ImageViewer::floatArrayToQImage(const tomocam::Slice<float> &array) {
             line[x] = static_cast<uchar>(norm * 255.0f);
         }
     }
+
+    // resize of image is too big
+    // get main window
+    MainWindow *mainWin;
+    QWidget *curr_parent = this->parentWidget();
+    while (curr_parent) {
+        mainWin = qobject_cast<MainWindow *>(curr_parent);
+        if (mainWin) {
+            break;
+        }
+    }
+    if (mainWin) {
+        if (h > mainWin->maxHeight() || w > mainWin->maxWidth()) {
+            img = img.scaled(mainWin->maxWidth(), mainWin->maxHeight(),
+                             Qt::KeepAspectRatioByExpanding);
+        }
+    }
     return img;
 }
 
@@ -60,7 +74,9 @@ void ImageViewer::wheelEvent(QWheelEvent *event) {
     auto nImgs = imageStack.nslices();
 
     int step = 1;
-    if (event->modifiers() & Qt::ControlModifier) { step = 5; }
+    if (event->modifiers() & Qt::ControlModifier) {
+        step = 5;
+    }
 
     if (event->angleDelta().y() > 0) {
         currentIndex = (currentIndex + step) % nImgs;
@@ -90,7 +106,8 @@ void ImageViewer::updateImageStack(const tomocam::Array<float> &arr) {
 
 void ImageViewer::saveROI(int z, int y, int x) {
 
-    if (!save_roi_flag) return;
+    if (!save_roi_flag)
+        return;
 
     uint32_t h = 256;
     uint32_t w = 256;
@@ -106,12 +123,11 @@ void ImageViewer::saveROI(int z, int y, int x) {
     for (uint32_t i = 0; i < h; ++i) {
         for (uint32_t j = 0; j < w; ++j) {
             float pxlval = imageStack[{slc, ibeg + i, jbeg + j}];
-            box[{0, i, j}] = static_cast<uint32_t>(
-                255.0 * (pxlval - minVal) / (maxVal - minVal));
+            box[{0, i, j}] = static_cast<uint32_t>(255.0 * (pxlval - minVal) / (maxVal - minVal));
         }
     }
     char path[20];
-    sprintf(path, "patch%05d.tif", counter);
+    snprintf(path, 20, "patch%05d.tif", counter);
     tomocam::tiff::write<uint32_t>(std::string(path), box);
     counter += 1;
 }
@@ -126,16 +142,30 @@ void ImageViewer::keyPressEvent(QKeyEvent *event) {
     int nImgs = imageStack.nslices();
     int oldIndex = currentIndex;
     switch (event->key()) {
-        case Qt::Key_Up: currentIndex = (currentIndex + 1) % nImgs; break;
-        case Qt::Key_Down:
-            currentIndex = (currentIndex - 1 + nImgs) % nImgs;
-            break;
-        case Qt::Key_PageUp: currentIndex = (currentIndex + 5) % nImgs; break;
-        case Qt::Key_PageDown: currentIndex = (currentIndex - 5) % nImgs; break;
-        case Qt::Key_Home: currentIndex = 0; break;
-        case Qt::Key_End: currentIndex = nImgs - 1; break;
-        default: QGraphicsView::keyPressEvent(event); return;
+    case Qt::Key_Up:
+        currentIndex = (currentIndex + 1) % nImgs;
+        break;
+    case Qt::Key_Down:
+        currentIndex = (currentIndex - 1 + nImgs) % nImgs;
+        break;
+    case Qt::Key_PageUp:
+        currentIndex = (currentIndex + 5) % nImgs;
+        break;
+    case Qt::Key_PageDown:
+        currentIndex = (currentIndex - 5) % nImgs;
+        break;
+    case Qt::Key_Home:
+        currentIndex = 0;
+        break;
+    case Qt::Key_End:
+        currentIndex = nImgs - 1;
+        break;
+    default:
+        QGraphicsView::keyPressEvent(event);
+        return;
     }
 
-    if (currentIndex != oldIndex) { updateImage(); }
+    if (currentIndex != oldIndex) {
+        updateImage();
+    }
 }
