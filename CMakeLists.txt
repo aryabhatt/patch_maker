@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
 find_package(TIFF REQUIRED)
+find_package(HDF5 REQUIRED)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -24,7 +25,11 @@ target_link_libraries(tomoview
     Qt6::Gui
     Qt6::Widgets
     TIFF::TIFF
+    HDF5::HDF5
 )
 
-enable_testing()
-add_subdirectory(tests)
+option(ENABLE_TESTS "Enable tests" OFF)
+if (${ENABLE_TESTS})
+    enable_testing()
+    add_subdirectory(tests)
+endif()
