@@ -26,7 +26,7 @@ cmake --build build
 ### Example
 
 ```bash
-./build/tomoview /path/to/your/data.tif
+./build/tiffview /path/to/your/data.tif
 ```
 
 ## Keyboard Controls
