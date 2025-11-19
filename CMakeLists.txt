@@ -25,5 +25,9 @@ target_link_libraries(tiffview PRIVATE
     TIFF::TIFF
 )
 
+install(TARGETS tiffview
+    RUNTIME DESTINATION $ENV{HOME}/.local/bin
+)
+
 enable_testing()
 add_subdirectory(tests)
