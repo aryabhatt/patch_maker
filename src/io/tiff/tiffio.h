@@ -38,6 +38,13 @@ namespace tomocam::tiff {
             throw std::runtime_error("unsupported data type");
         }
 
+        if (bits != sizeof(single32_t) * 8) {
+            std::cerr << "Error: TIFF has " << bits << "-bit samples, but template expects " 
+                      << sizeof(single32_t) * 8 << "-bit samples" << std::endl;
+            TIFFClose(tif_);
+            throw std::runtime_error("bit depth mismatch");
+        }
+
         // allocate memory
         uint32_t nscls = static_cast<uint32_t>(npages);
         uint32_t nrows = static_cast<uint32_t>(w);
