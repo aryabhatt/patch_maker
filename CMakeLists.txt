@@ -13,13 +13,12 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -DDEBUG")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(tomoview
+add_executable(tiffview
     src/main.cpp
     src/image_viewer.cpp
-    src/main_window.cpp
 )
 
-target_link_libraries(tomoview
+target_link_libraries(tiffview PRIVATE
     Qt6::Core
     Qt6::Gui
     Qt6::Widgets

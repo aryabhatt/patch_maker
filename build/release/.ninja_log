@@ -1,0 +1,17 @@
+# ninja log v5
+3	87	1763511697450462761	tests/tests_autogen/timestamp	338fe46f20ca35e6
+3	87	1763511697450462761	tests/tests_autogen/mocs_compilation.cpp	338fe46f20ca35e6
+3	87	1763511697450462761	/home/dkumar/patch_maker/build/release/tests/tests_autogen/timestamp	338fe46f20ca35e6
+3	87	1763511697450462761	/home/dkumar/patch_maker/build/release/tests/tests_autogen/mocs_compilation.cpp	338fe46f20ca35e6
+87	124	1763511697494462926	tests/CMakeFiles/tests.dir/tests_autogen/mocs_compilation.cpp.o	ddfc9802d03b09d4
+2	375	1763511697736463836	tomoview_autogen/timestamp	cf829e77f04d9d4f
+2	375	1763511697736463836	tomoview_autogen/mocs_compilation.cpp	cf829e77f04d9d4f
+2	375	1763511697736463836	/home/dkumar/patch_maker/build/release/tomoview_autogen/timestamp	cf829e77f04d9d4f
+2	375	1763511697736463836	/home/dkumar/patch_maker/build/release/tomoview_autogen/mocs_compilation.cpp	cf829e77f04d9d4f
+87	1016	1763511698382466267	tests/CMakeFiles/tests.dir/tests.cpp.o	2dbfe3c5a89369a
+1016	1110	1763511698479466632	tests/tests	ec87a63a0731373b
+376	4021	1763511701384477581	CMakeFiles/tomoview.dir/src/main.cpp.o	f3842612ec87eab9
+376	4063	1763511701428477747	CMakeFiles/tomoview.dir/tomoview_autogen/mocs_compilation.cpp.o	c021cebca8c9b08b
+376	4116	1763511701481477947	CMakeFiles/tomoview.dir/src/image_viewer.cpp.o	99d1f3fd50c3eaef
+377	4296	1763511701660478623	CMakeFiles/tomoview.dir/src/main_window.cpp.o	82ba69a46401be80
+4296	4645	1763511702012479951	tomoview	91fc3a44a2ccc943

@@ -1,0 +1,12 @@
+/home/dkumar/patch_maker/build/debug/CMakeFiles/tomoview.dir
+/home/dkumar/patch_maker/build/debug/CMakeFiles/test.dir
+/home/dkumar/patch_maker/build/debug/CMakeFiles/edit_cache.dir
+/home/dkumar/patch_maker/build/debug/CMakeFiles/rebuild_cache.dir
+/home/dkumar/patch_maker/build/debug/CMakeFiles/tomoview_autogen_timestamp_deps.dir
+/home/dkumar/patch_maker/build/debug/CMakeFiles/tomoview_autogen.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/tests.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/test.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/edit_cache.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/rebuild_cache.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/tests_autogen_timestamp_deps.dir
+/home/dkumar/patch_maker/build/debug/tests/CMakeFiles/tests_autogen.dir

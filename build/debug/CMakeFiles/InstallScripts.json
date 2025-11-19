@@ -1,0 +1,8 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/dkumar/patch_maker/build/debug/cmake_install.cmake",
+		"/home/dkumar/patch_maker/build/debug/tests/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
