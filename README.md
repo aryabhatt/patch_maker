@@ -20,7 +20,7 @@ cmake --build build
 ## Usage
 
 ```bash
-./build/tomoview <tiff_file>
+./build/tiffview <tiff_file>
 ```
 
 ### Example
